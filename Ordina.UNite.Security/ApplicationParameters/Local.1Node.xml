@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/Ordina.UNite.Security" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="Ordina.UNite.Security.Public.MVC_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="Ordina.UNite.Security.Public.MVC_InstanceCount" Value="1" />
+    <Parameter Name="Ordina.UNite.Security.Public.Api_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="Ordina.UNite.Security.Public.Api_InstanceCount" Value="1" />
+    <Parameter Name="Ordina.UNite.Security.Private.Api_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="Ordina.UNite.Security.Private.Api_InstanceCount" Value="1" />
+    <Parameter Name="SessionStateActorService_PartitionCount" Value="1" />
+    <Parameter Name="SessionStateActorService_TargetReplicaSetSize" Value="1" />
+    <Parameter Name="SessionStateActorService_MinReplicaSetSize" Value="1" />
+  </Parameters>
+</Application>
