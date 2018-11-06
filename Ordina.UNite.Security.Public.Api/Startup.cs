@@ -30,6 +30,8 @@ namespace Ordina.UNite.Security.Public.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.TryAddScoped<IClientFactory, ClientFactory>();
+            services.TryAddScoped<IApsClient, ApsClient>();
             services.TryAddScoped<IPrivateApiClient, PrivateApiClient>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

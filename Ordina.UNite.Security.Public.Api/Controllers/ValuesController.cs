@@ -11,21 +11,27 @@ namespace Ordina.UNite.Security.Public.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ValuesController : ControllerBase
     {
-        private readonly IPrivateApiClient _privateApiClient;
+        private readonly IClientFactory _clientFactory;
 
-        public ValuesController(IPrivateApiClient privateApiClient)
+        public ValuesController(IClientFactory clientFactory)
         {
-            _privateApiClient = privateApiClient;
+            _clientFactory = clientFactory;
         }
 
         // GET api/values
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var client = await _privateApiClient.GetClient();
-            var response = await client.GetAsync("values");
+            var apsClient = await _clientFactory.GetApsClient();
+            var authorization = await apsClient.Authorize(new AuthorizationRequest { Action = "read", ResourceType = "Values"});
+
+            if (!authorization.HasAccess) return Unauthorized();
+
+            var privateApiClient = await _clientFactory.GetPrivateApiClient();
+            var response = await privateApiClient.Client.GetAsync("values");
 
             var values = new List<string>();
             if (response.IsSuccessStatusCode)

@@ -52,6 +52,18 @@ namespace Ordina.UNite.Security.IDP
                     "function",
                     "level"
                 }
+            },
+            new ApiResource("aps", "Authorization policy service")
+            {
+                UserClaims =
+                {
+                    "given_name",
+                    "family_name",
+                    "role",
+                    "unit",
+                    "function",
+                    "level"
+                }
             }
             // Add additional private ApiResource
         };
@@ -100,7 +112,8 @@ namespace Ordina.UNite.Security.IDP
                 AllowedGrantTypes = { "delegation" },
                 AllowedScopes = new List<string>
                 {
-                    "private_api"
+                    "private_api",
+                    "aps"
                     // Add additional private api services
                 }
             }

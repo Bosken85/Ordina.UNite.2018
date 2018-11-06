@@ -16,29 +16,30 @@ namespace Ordina.UNite.Security.Public.Api.Clients
 {
     public class PrivateApiClient : IPrivateApiClient
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private HttpClient _httpClient = new HttpClient();
+        private string accessToken;
 
-        public PrivateApiClient(IHttpContextAccessor httpContextAccessor)
+        public HttpClient Client
         {
-            _httpContextAccessor = httpContextAccessor;
+            get
+            {
+                var endpoint = GetEndpoint();
+                var uriBuilder = new UriBuilder(new Uri(endpoint));
+
+                _httpClient.BaseAddress = uriBuilder.Uri;
+                _httpClient.DefaultRequestHeaders.Clear();
+                _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                if (!string.IsNullOrWhiteSpace(accessToken))
+                    _httpClient.SetBearerToken(accessToken);
+
+                return _httpClient;
+            }
         }
-
-        public async Task<HttpClient> GetClient()
+        
+        public void SetAccessToken(string token)
         {
-            var endpoint = GetEndpoint();
-            var uriBuilder = new UriBuilder(new Uri(endpoint));
-
-            _httpClient.BaseAddress = uriBuilder.Uri;
-            _httpClient.DefaultRequestHeaders.Clear();
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var accessToken = await GetDelegationAccessToken();
-
-            if (!string.IsNullOrWhiteSpace(accessToken))
-                _httpClient.SetBearerToken(accessToken);
-
-            return _httpClient;
+            accessToken = token;
         }
 
         private string GetEndpoint()
@@ -51,23 +52,6 @@ namespace Ordina.UNite.Security.Public.Api.Clients
             JObject addresses = JObject.Parse(serviceEndpoint.Address);
             string endpoint = (string)addresses["Endpoints"].First();
             return endpoint;
-        }
-
-        private async Task<string> GetDelegationAccessToken()
-        {
-            var discoveryClient = new DiscoveryClient("http://localhost:44301/");
-            var metaDataReponse = await discoveryClient.GetAsync();
-
-            var token = await this._httpContextAccessor.HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
-            var payload = new
-            {
-                token = token
-            };
-
-            var client = new TokenClient(metaDataReponse.TokenEndpoint, "public_api.client", "secret");
-
-            var response = await client.RequestCustomGrantAsync("delegation", "private_api", payload);
-            return response.AccessToken;
         }
     }
 }
