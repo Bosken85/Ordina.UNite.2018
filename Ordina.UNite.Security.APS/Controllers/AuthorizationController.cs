@@ -37,17 +37,4 @@ namespace Ordina.UNite.Security.APS.Controllers
             return Ok(responses);
         }
     }
-
-    public class AuthorizationRequest
-    {
-        public string ResourceType { get; set; }
-        public string Action { get; set; }
-        public object Resource { get; set; }
-    }
-
-    public class AuthorizationResponse
-    {
-        public string Action { get; set; }
-        public bool HasAccess { get; set; }
-    }
 }
