@@ -19,7 +19,7 @@ namespace Public.Portal.SessionState
     ///  - None: State is kept in memory only and not replicated.
     /// </remarks>
     [StatePersistence(StatePersistence.Persisted)]
-    internal class SessionState : Actor, ISessionState
+    internal class SessionState : Actor, IUserSession
     {
         /// <summary>
         /// Initializes a new instance of SessionState
@@ -31,10 +31,10 @@ namespace Public.Portal.SessionState
         {
         }
 
-        public async Task<string> GetSessionItem(string key, CancellationToken cancellationToken)
+        public async Task<T> GetSessionItem<T>(string key, CancellationToken cancellationToken)
         {
-            var stateValue = await this.StateManager.TryGetStateAsync<string>(key, cancellationToken);
-            return stateValue.HasValue ? stateValue.Value : null;
+            var stateValue = await this.StateManager.TryGetStateAsync<T>(key, cancellationToken);
+            return stateValue.HasValue ? stateValue.Value : default(T);
         }
 
         public async Task RemoveSessionItem(string key, CancellationToken cancellationToken)
@@ -42,7 +42,7 @@ namespace Public.Portal.SessionState
             await this.StateManager.TryRemoveStateAsync(key, cancellationToken);
         }
 
-        public Task SetSessionItem(string key, string value, CancellationToken cancellationToken)
+        public Task SetSessionItem<T>(string key, T value, CancellationToken cancellationToken)
         {
             return this.StateManager.AddOrUpdateStateAsync(key, value, (k, v) => value, cancellationToken);
         }

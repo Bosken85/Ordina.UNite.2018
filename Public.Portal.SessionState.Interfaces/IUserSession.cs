@@ -14,10 +14,10 @@ namespace Public.Portal.SessionState.Interfaces
     /// This interface defines the methods exposed by an actor.
     /// Clients use this interface to interact with the actor that implements it.
     /// </summary>
-    public interface ISessionState : IActor
+    public interface IUserSession : IActor
     {
-        Task<string> GetSessionItem(string key, CancellationToken cancellationToken);
-        Task SetSessionItem(string key, string value, CancellationToken cancellationToken);
+        Task<T> GetSessionItem<T>(string key, CancellationToken cancellationToken);
+        Task SetSessionItem<T>(string key, T value, CancellationToken cancellationToken);
         Task RemoveSessionItem(string key, CancellationToken cancellationToken);
     }
 }

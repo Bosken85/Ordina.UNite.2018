@@ -11,8 +11,13 @@
     <PackageReference Include="IdentityModel" Version="3.10.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.ServiceFabric.Actors" Version="3.2.187" />
     <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="3.2.187" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Public.Portal.SessionState.Interfaces\Public.Portal.SessionState.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
