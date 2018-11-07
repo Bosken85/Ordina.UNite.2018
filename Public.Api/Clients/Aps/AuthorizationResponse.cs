@@ -4,5 +4,6 @@
     {
         public string Action { get; set; }
         public bool HasAccess { get; set; }
+        public object RedactedResource { get; set; }
     }
 }

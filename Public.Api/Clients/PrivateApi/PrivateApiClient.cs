@@ -23,12 +23,12 @@ namespace Public.Api.Clients
         {
         }
 
-        public async Task<IEnumerable<string>> GetValues()
+        public async Task<IEnumerable<dynamic>> GetValues()
         {
             var client = await ConstructClient();
             var response = await client.GetAsync("values");
 
-            var values = new List<string>();
+            var values = new List<dynamic>();
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Request Message Information:- \n\n" + response.RequestMessage + "\n");
@@ -38,16 +38,31 @@ namespace Public.Api.Clients
                 Console.WriteLine("Your response data is: " + customerJsonString);
 
                 // Deserialise the data (include the Newtonsoft JSON Nuget package if you don't already have it)
-                var deserialized = JsonConvert.DeserializeObject<IEnumerable<string>>(customerJsonString);
+                var deserialized = JsonConvert.DeserializeObject<IEnumerable<dynamic>>(customerJsonString);
                 // Do something with it
                 values.AddRange(deserialized);
             }
             return values;
         }
 
-        public Task<IEnumerable<string>> GetValue(Guid id)
+        public async Task<dynamic> GetValue(Guid id)
         {
-            throw new NotImplementedException();
+            var client = await ConstructClient();
+            var response = await client.GetAsync($"values/{id}");
+
+            dynamic value = default(dynamic);
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Request Message Information:- \n\n" + response.RequestMessage + "\n");
+                Console.WriteLine("Response Message Header \n\n" + response.Content.Headers + "\n");
+                // Get the response
+                var customerJsonString = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("Your response data is: " + customerJsonString);
+
+                // Deserialise the data (include the Newtonsoft JSON Nuget package if you don't already have it)
+                value = JsonConvert.DeserializeObject<dynamic>(customerJsonString);
+            }
+            return value;
         }
     }
 }

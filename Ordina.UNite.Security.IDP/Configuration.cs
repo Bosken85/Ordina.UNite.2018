@@ -142,6 +142,24 @@ namespace Ordina.UNite.Security.IDP
             new TestUser
             {
                 SubjectId = "85441825-C3EC-4314-8102-08EE8699D96B",
+                Username = "jorgen",
+                Password = "pass",
+                Claims = new List<Claim>
+                {
+                    new Claim("given_name", "Jorgen"),
+                    new Claim("family_name", "Jacob"),
+                    new Claim("email", "jorgen.jacob@ordina.com"),
+                    new Claim("address", "green Street 16, 1000 Brussels, Belgium"),
+                    new Claim("role", "Admin"),
+                    new Claim("unit", "NCore"),
+                    new Claim("function", "Bum"),
+                    new Claim("level", "Senior"),
+                    new Claim("years_service", "2")
+                }
+            },
+            new TestUser
+            {
+                SubjectId = "85441825-C3EC-4314-8102-08EE8699D96B",
                 Username = "guest",
                 Password = "pass",
                 Claims = new List<Claim>

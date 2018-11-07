@@ -7,7 +7,7 @@ namespace Public.Api.Clients
 {
     public interface IPrivateApiClient : IDelegationClient
     {
-        Task<IEnumerable<string>> GetValues();
-        Task<IEnumerable<string>> GetValue(Guid id);
+        Task<IEnumerable<dynamic>> GetValues();
+        Task<dynamic> GetValue(Guid id);
     }
 }

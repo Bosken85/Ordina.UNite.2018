@@ -37,27 +37,17 @@ namespace Public.Api.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
-        }
+            var privateClient = await _clientFactory.PrivateApiClient();
+            var value = await privateClient.GetValue(id);
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+            var apsClient = await _clientFactory.ApsClient();
+            var authorization = await apsClient.Authorize(new AuthorizationRequest { Action = "read_detail", ResourceType = "Values", Resource = value });
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (!authorization.HasAccess) return Unauthorized();
+            
+            return Ok(authorization.RedactedResource);
         }
     }
 }

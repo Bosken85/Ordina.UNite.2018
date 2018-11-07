@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.ServiceFabric.Services.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace Public.Api.Clients
 {
@@ -29,7 +30,10 @@ namespace Public.Api.Clients
 
         public async Task<IEnumerable<AuthorizationResponse>> Authorize(IEnumerable<AuthorizationRequest> authorizationRequests)
         {
-            var payload = JsonConvert.SerializeObject(authorizationRequests);
+            var payload = JsonConvert.SerializeObject(authorizationRequests, new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver() 
+            });
             var client = await ConstructClient();
             var response = await client.PostAsync("Authorization", new StringContent(payload, Encoding.UTF8, "application/json"));
 
