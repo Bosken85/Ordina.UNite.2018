@@ -32,11 +32,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ordina.UNite.Security.APS\APS.csproj" />
-    <ProjectReference Include="..\Ordina.UNite.Security.IDP.SessionState\Public.Portal.SessionState.csproj" />
-    <ProjectReference Include="..\Ordina.UNite.Security.Private.Api\Private.Api.csproj" />
-    <ProjectReference Include="..\Ordina.UNite.Security.Public.Api\Public.Api.csproj" />
-    <ProjectReference Include="..\Ordina.UNite.Security.Public.MVC\Public.Portal.csproj" />
+    <ProjectReference Include="..\APS\APS.csproj" />
+    <ProjectReference Include="..\Private.Api\Private.Api.csproj" />
+    <ProjectReference Include="..\Public.Api\Public.Api.csproj" />
+    <ProjectReference Include="..\Public.Portal.SessionState\Public.Portal.SessionState.csproj" />
+    <ProjectReference Include="..\Public.Portal\Public.Portal.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <PropertyGroup>
