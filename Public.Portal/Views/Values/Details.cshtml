@@ -1,3 +1,24 @@
-﻿@{
+﻿@model Value
+@{
     ViewData["Title"] = "Value detail";
 }
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col">
+        <ul class="list-group">
+            <li class="list-group-item">@Model.FirstName</li>
+            <li class="list-group-item">@Model.Name</li>
+            @if (!string.IsNullOrWhiteSpace(Model.Role))
+            {
+                <li class="list-group-item">@Model.Role</li>
+            }
+            <li class="list-group-item">@Model.Unit</li>
+            <li class="list-group-item">@Model.Function</li>
+            <li class="list-group-item">@Model.Level</li>
+            @if (Model.YearsOfService != null)
+            {
+                <li class="list-group-item">@Model.YearsOfService</li>
+            }
+        </ul>
+    </div>
+</div>

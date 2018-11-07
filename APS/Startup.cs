@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using APS.Policies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace APS
 {
@@ -27,9 +29,11 @@ namespace APS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             #region Add Policies
 
-            services.AddScoped<IAuthorizationHandler, RequiresLevelAuthorizationHandler>(); 
+            services.AddScoped<IAuthorizationHandler, CanReadValueDetailAuthorizationHandler>(); 
 
             #endregion
 

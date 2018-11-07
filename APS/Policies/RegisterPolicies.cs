@@ -15,15 +15,15 @@ namespace APS.Policies
             {
                 x.RequireAuthenticatedUser();
                 x.RequireClaim("unit", "NCore");
-                x.RequireClaim("role", "Employee");
+                x.RequireRole("Employee", "Admin");
             });
 
             options.AddPolicy("VALUES_READ_DETAIL", x =>
             {
                 x.RequireAuthenticatedUser();
                 x.RequireClaim("unit", "NCore");
-                x.RequireClaim("role", "Employee");
-                x.AddRequirements(new RequiresLevel("Senior"));
+                x.RequireClaim("role", "Employee", "Admin");
+                x.AddRequirements(new CanReadValueDetail("Admin"));
             });
         }
     }

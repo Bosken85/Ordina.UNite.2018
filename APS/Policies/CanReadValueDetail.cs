@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace APS.Policies
 {
-    public class RequiresLevel : IAuthorizationRequirement
+    public class CanReadValueDetail : IAuthorizationRequirement
     {
-        public string Level { get; }
+        public string Role { get; }
 
-        public RequiresLevel(string level)
+        public CanReadValueDetail(string role)
         {
-            Level = level;
+            Role = role;
         }
     }
 }

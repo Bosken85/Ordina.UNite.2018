@@ -1,12 +1,26 @@
-﻿@model IEnumerable<string>
+﻿@model IEnumerable<Value>
 @{
     ViewData["Title"] = "Values";
 }
 <h2>@ViewData["Title"]</h2>
-
-<ul>
-    @foreach (var item in Model)
-    {
-        <li>@item</li>
-    }
-</ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Firstname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.Name</td>
+                <td>
+                    <a class="btn btn-default" asp-area="" asp-controller="Values" asp-action="Details" asp-route-id="@item.UserId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

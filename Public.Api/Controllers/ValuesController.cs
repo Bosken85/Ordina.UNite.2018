@@ -25,54 +25,29 @@ namespace Public.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var apsClient = await _clientFactory.GetApsClient();
+            var apsClient = await _clientFactory.ApsClient();
             var authorization = await apsClient.Authorize(new AuthorizationRequest { Action = "read", ResourceType = "Values"});
 
             if (!authorization.HasAccess) return Unauthorized();
 
-            var privateApiClient = await _clientFactory.GetPrivateApiClient();
-            var response = await privateApiClient.Client.GetAsync("values");
-
-            var values = new List<string>();
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Request Message Information:- \n\n" + response.RequestMessage + "\n");
-                Console.WriteLine("Response Message Header \n\n" + response.Content.Headers + "\n");
-                // Get the response
-                var customerJsonString = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Your response data is: " + customerJsonString);
-
-                // Deserialise the data (include the Newtonsoft JSON Nuget package if you don't already have it)
-                var deserialized = JsonConvert.DeserializeObject<IEnumerable<string>>(customerJsonString);
-                // Do something with it
-                values.AddRange(deserialized);
-            }
+            var privateClient = await _clientFactory.PrivateApiClient();
+            var values = await privateClient.GetValues();
             return Ok(values);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
-        }
+            var privateClient = await _clientFactory.PrivateApiClient();
+            var value = await privateClient.GetValue(id);
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+            var apsClient = await _clientFactory.ApsClient();
+            var authorization = await apsClient.Authorize(new AuthorizationRequest { Action = "read_detail", ResourceType = "Values", Resource = value });
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (!authorization.HasAccess) return Unauthorized();
+            
+            return Ok(authorization.RedactedResource);
         }
     }
 }

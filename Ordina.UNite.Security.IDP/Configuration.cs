@@ -36,8 +36,8 @@ namespace Ordina.UNite.Security.IDP
                 UserClaims =
                 {
                     // Not all claims needed in private services need to be enabled in the public Api Gateway
-                    //"given_name",
-                    //"family_name",
+                    "given_name",
+                    "family_name",
                     "role"
                 }
             },
@@ -50,7 +50,7 @@ namespace Ordina.UNite.Security.IDP
                     "role",
                     "unit",
                     "function",
-                    "level"
+                    //"level"
                 }
             },
             new ApiResource("aps", "Authorization policy service")
@@ -61,7 +61,7 @@ namespace Ordina.UNite.Security.IDP
                     "family_name",
                     "role",
                     "unit",
-                    "function",
+                    //"function",
                     "level"
                 }
             }
@@ -137,6 +137,24 @@ namespace Ordina.UNite.Security.IDP
                     new Claim("function", "Developer"),
                     new Claim("level", "Senior"),
                     new Claim("years_service", "3")
+                }
+            },
+            new TestUser
+            {
+                SubjectId = "85441825-C3EC-4314-8102-08EE8699D96B",
+                Username = "jorgen",
+                Password = "pass",
+                Claims = new List<Claim>
+                {
+                    new Claim("given_name", "Jorgen"),
+                    new Claim("family_name", "Jacob"),
+                    new Claim("email", "jorgen.jacob@ordina.com"),
+                    new Claim("address", "green Street 16, 1000 Brussels, Belgium"),
+                    new Claim("role", "Admin"),
+                    new Claim("unit", "NCore"),
+                    new Claim("function", "Bum"),
+                    new Claim("level", "Senior"),
+                    new Claim("years_service", "2")
                 }
             },
             new TestUser

@@ -4,6 +4,6 @@
     {
         public string ResourceType { get; set; }
         public string Action { get; set; }
-        public object Resource { get; set; }
+        public dynamic Resource { get; set; }
     }
 }

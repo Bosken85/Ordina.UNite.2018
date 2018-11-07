@@ -4,7 +4,7 @@ namespace Public.Api.Clients
 {
     public interface IClientFactory
     {
-        Task<IApsClient> GetApsClient();
-        Task<IPrivateApiClient> GetPrivateApiClient();
+        Task<IApsClient> ApsClient();
+        Task<IPrivateApiClient> PrivateApiClient();
     }
 }

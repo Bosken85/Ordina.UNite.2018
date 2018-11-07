@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Public.Portal.Clients;
+using Public.Portal.Models;
 
 namespace Public.Portal.Controllers
 {
+    [Authorize]
     public class ValuesController : Controller
     {
         private readonly IPublicApiClient _publicApiClient;
@@ -24,17 +27,13 @@ namespace Public.Portal.Controllers
             var client = await _publicApiClient.GetClient();
             var response = await client.GetAsync("values");
 
-            var values = new List<string>();
+            var values = new List<Value>();
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("Request Message Information:- \n\n" + response.RequestMessage + "\n");
-                Console.WriteLine("Response Message Header \n\n" + response.Content.Headers + "\n");
                 // Get the response
                 var customerJsonString = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Your response data is: " + customerJsonString);
-
                 // Deserialise the data (include the Newtonsoft JSON Nuget package if you don't already have it)
-                var deserialized = JsonConvert.DeserializeObject<IEnumerable<string>>(customerJsonString);
+                var deserialized = JsonConvert.DeserializeObject<IEnumerable<Value>>(customerJsonString);
                 // Do something with it
                 values.AddRange(deserialized);
             }
@@ -42,9 +41,24 @@ namespace Public.Portal.Controllers
         }
 
         // GET: Values/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            return View();
+            var client = await _publicApiClient.GetClient();
+            var response = await client.GetAsync($"values/{id}");
+
+            Value value = null;
+            if (response.IsSuccessStatusCode)
+            {
+                // Get the response
+                var customerJsonString = await response.Content.ReadAsStringAsync();
+                // Deserialise the data (include the Newtonsoft JSON Nuget package if you don't already have it)
+                value = JsonConvert.DeserializeObject<Value>(customerJsonString);
+                return View(value);
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
     }
 }
