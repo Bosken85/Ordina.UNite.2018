@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors.Runtime;
 
-namespace Ordina.UNite.Security.IDP.SessionState
+namespace Public.Portal.SessionState
 {
-    [EventSource(Name = "MyCompany-Ordina.UNite.Security-Ordina.UNite.Security.IDP.SessionState")]
+    [EventSource(Name = "MyCompany-Ordina.UNite.Security-Public.Portal.SessionState")]
     internal sealed class ActorEventSource : EventSource
     {
         public static readonly ActorEventSource Current = new ActorEventSource();

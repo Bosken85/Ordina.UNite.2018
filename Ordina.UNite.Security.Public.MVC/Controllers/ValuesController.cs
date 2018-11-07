@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Ordina.UNite.Security.Public.MVC.Clients;
+using Public.Portal.Clients;
 
-namespace Ordina.UNite.Security.Public.MVC.Controllers
+namespace Public.Portal.Controllers
 {
     public class ValuesController : Controller
     {

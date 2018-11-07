@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ordina.UNite.Security.IDP.SessionState.Interfaces\Ordina.UNite.Security.IDP.SessionState.Interfaces.csproj" />
+    <ProjectReference Include="..\Ordina.UNite.Security.IDP.SessionState.Interfaces\Public.Portal.SessionState.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

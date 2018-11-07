@@ -1,6 +1,6 @@
 using System;
 
-namespace Ordina.UNite.Security.Public.MVC.Models
+namespace Public.Portal.Models
 {
     public class ErrorViewModel
     {

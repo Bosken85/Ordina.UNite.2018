@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Ordina.UNite.Security.Private.Api
+namespace Private.Api
 {
     public class Startup
     {
@@ -66,7 +66,7 @@ namespace Ordina.UNite.Security.Private.Api
         private string GetXmlCommentsPath()
         {
             var app = System.AppContext.BaseDirectory;
-            return System.IO.Path.Combine(app, "Ordina.UNite.Security.Private.Api.xml");
+            return System.IO.Path.Combine(app, "Private.Api.xml");
         }
     }
 }

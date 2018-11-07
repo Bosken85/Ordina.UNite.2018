@@ -12,7 +12,7 @@ using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.ServiceFabric.Data;
 
-namespace Ordina.UNite.Security.Public.Api
+namespace Public.Api
 {
     /// <summary>
     /// The FabricRuntime creates an instance of this class for each service type instance. 

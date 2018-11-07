@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace Ordina.UNite.Security.Public.Api
+namespace Public.Api
 {
-    [EventSource(Name = "MyCompany-Ordina.UNite.Security-Ordina.UNite.Security.Public.Api")]
+    [EventSource(Name = "MyCompany-Ordina.UNite.Security-Public.Api")]
     internal sealed class ServiceEventSource : EventSource
     {
         public static readonly ServiceEventSource Current = new ServiceEventSource();

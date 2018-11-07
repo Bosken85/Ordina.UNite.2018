@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Ordina.UNite.Security.APS
+namespace APS
 {
     internal static class Program
     {
@@ -20,7 +20,7 @@ namespace Ordina.UNite.Security.APS
                 // When Service Fabric creates an instance of this service type,
                 // an instance of the class is created in this host process.
 
-                ServiceRuntime.RegisterServiceAsync("Ordina.UNite.Security.APSType",
+                ServiceRuntime.RegisterServiceAsync("APSType",
                     context => new APS(context)).GetAwaiter().GetResult();
 
                 ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(APS).Name);

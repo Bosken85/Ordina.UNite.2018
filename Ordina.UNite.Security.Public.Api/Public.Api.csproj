@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.1\win7-x64\Ordina.UNite.Security.Public.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.1\win7-x64\Public.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.1\win7-x64\Ordina.UNite.Security.Public.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netcoreapp2.1\win7-x64\Public.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

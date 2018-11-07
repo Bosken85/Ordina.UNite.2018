@@ -1,4 +1,4 @@
-﻿namespace Ordina.UNite.Security.APS.Controllers
+﻿namespace APS.Controllers
 {
     public class AuthorizationResponse
     {

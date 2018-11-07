@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors.Runtime;
 
-namespace Ordina.UNite.Security.IDP.SessionState
+namespace Public.Portal.SessionState
 {
     internal static class Program
     {

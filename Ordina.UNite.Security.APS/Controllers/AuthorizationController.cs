@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ordina.UNite.Security.APS.Controllers
+namespace APS.Controllers
 {
     [Route("[controller]")]
     [ApiController]

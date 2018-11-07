@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Ordina.UNite.Security.Public.Api.Clients
+namespace Public.Api.Clients
 {
     public interface IClientFactory
     {

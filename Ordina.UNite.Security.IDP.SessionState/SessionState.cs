@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Runtime;
 using Microsoft.ServiceFabric.Actors.Client;
-using Ordina.UNite.Security.IDP.SessionState.Interfaces;
+using Public.Portal.SessionState.Interfaces;
 
-namespace Ordina.UNite.Security.IDP.SessionState
+namespace Public.Portal.SessionState
 {
     /// <remarks>
     /// This class represents an actor.

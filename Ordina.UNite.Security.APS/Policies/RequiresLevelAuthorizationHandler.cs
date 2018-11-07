@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Ordina.UNite.Security.APS.Policies
+namespace APS.Policies
 {
     public class RequiresLevelAuthorizationHandler : AuthorizationHandler<RequiresLevel>
     {

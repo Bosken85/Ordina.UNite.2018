@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
-namespace Ordina.UNite.Security.Public.MVC.Clients
+namespace Public.Portal.Clients
 {
     public class PublicApiClient : IPublicApiClient
     {

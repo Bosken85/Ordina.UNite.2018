@@ -13,9 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Ordina.UNite.Security.Public.MVC.Clients;
+using Public.Portal.Clients;
 
-namespace Ordina.UNite.Security.Public.MVC
+namespace Public.Portal
 {
     public class Startup
     {

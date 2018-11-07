@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="Ordina.UNite.SecurityType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
-    <Parameter Name="Ordina.UNite.Security.APS_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
-    <Parameter Name="Ordina.UNite.Security.APS_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Ordina.UNite.Security.Public.MVC_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
-    <Parameter Name="Ordina.UNite.Security.Public.MVC_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Ordina.UNite.Security.Public.Api_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
-    <Parameter Name="Ordina.UNite.Security.Public.Api_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="Ordina.UNite.Security.Private.Api_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
-    <Parameter Name="Ordina.UNite.Security.Private.Api_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="APS_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="APS_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="Public.Portal_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="Public.Portal_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="Public.Api_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="Public.Api_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="Private.Api_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="Private.Api_InstanceCount" DefaultValue="-1" />
     <Parameter Name="SessionStateActorService_PartitionCount" DefaultValue="10" />
     <Parameter Name="SessionStateActorService_MinReplicaSetSize" DefaultValue="3" />
     <Parameter Name="SessionStateActorService_TargetReplicaSetSize" DefaultValue="3" />
@@ -17,34 +17,34 @@
        should match the Name and Version attributes of the ServiceManifest element defined in the 
        ServiceManifest.xml file. -->
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Ordina.UNite.Security.APSPkg" ServiceManifestVersion="1.0.0" />
+    <ServiceManifestRef ServiceManifestName="APSPkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Ordina.UNite.Security.APS_ASPNETCORE_ENVIRONMENT]" />
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[APS_ASPNETCORE_ENVIRONMENT]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Ordina.UNite.Security.IDP.SessionStatePkg" ServiceManifestVersion="1.0.0" />
+    <ServiceManifestRef ServiceManifestName="Public.Portal.SessionStatePkg" ServiceManifestVersion="1.0.0" />
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Ordina.UNite.Security.Public.MVCPkg" ServiceManifestVersion="1.0.0" />
+    <ServiceManifestRef ServiceManifestName="Public.PortalPkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Ordina.UNite.Security.Public.MVC_ASPNETCORE_ENVIRONMENT]" />
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Public.Portal_ASPNETCORE_ENVIRONMENT]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Ordina.UNite.Security.Public.ApiPkg" ServiceManifestVersion="1.0.0" />
+    <ServiceManifestRef ServiceManifestName="Public.ApiPkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Ordina.UNite.Security.Public.Api_ASPNETCORE_ENVIRONMENT]" />
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Public.Api_ASPNETCORE_ENVIRONMENT]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="Ordina.UNite.Security.Private.ApiPkg" ServiceManifestVersion="1.0.0" />
+    <ServiceManifestRef ServiceManifestName="Private.ApiPkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Ordina.UNite.Security.Private.Api_ASPNETCORE_ENVIRONMENT]" />
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[Private.Api_ASPNETCORE_ENVIRONMENT]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <DefaultServices>
@@ -53,23 +53,23 @@
          ServiceFabric PowerShell module.
          
          The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
-    <Service Name="Ordina.UNite.Security.APS" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Ordina.UNite.Security.APSType" InstanceCount="[Ordina.UNite.Security.APS_InstanceCount]">
+    <Service Name="APS" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="APSType" InstanceCount="[APS_InstanceCount]">
         <SingletonPartition />
       </StatelessService>
     </Service>
-    <Service Name="Ordina.UNite.Security.Public.MVC" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Ordina.UNite.Security.Public.MVCType" InstanceCount="[Ordina.UNite.Security.Public.MVC_InstanceCount]">
+    <Service Name="Public.Portal" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="Public.PortalType" InstanceCount="[Public.Portal_InstanceCount]">
         <SingletonPartition />
       </StatelessService>
     </Service>
-    <Service Name="Ordina.UNite.Security.Public.Api" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Ordina.UNite.Security.Public.ApiType" InstanceCount="[Ordina.UNite.Security.Public.Api_InstanceCount]">
+    <Service Name="Public.Api" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="Public.ApiType" InstanceCount="[Public.Api_InstanceCount]">
         <SingletonPartition />
       </StatelessService>
     </Service>
-    <Service Name="Ordina.UNite.Security.Private.Api" ServicePackageActivationMode="ExclusiveProcess">
-      <StatelessService ServiceTypeName="Ordina.UNite.Security.Private.ApiType" InstanceCount="[Ordina.UNite.Security.Private.Api_InstanceCount]">
+    <Service Name="Private.Api" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="Private.ApiType" InstanceCount="[Private.Api_InstanceCount]">
         <SingletonPartition />
       </StatelessService>
     </Service>

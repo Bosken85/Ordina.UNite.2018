@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Ordina.UNite.Security.Public.Api
+namespace Public.Api
 {
     internal static class Program
     {
@@ -20,7 +20,7 @@ namespace Ordina.UNite.Security.Public.Api
                 // When Service Fabric creates an instance of this service type,
                 // an instance of the class is created in this host process.
 
-                ServiceRuntime.RegisterServiceAsync("Ordina.UNite.Security.Public.ApiType",
+                ServiceRuntime.RegisterServiceAsync("Public.ApiType",
                     context => new Api(context)).GetAwaiter().GetResult();
 
                 ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Api).Name);

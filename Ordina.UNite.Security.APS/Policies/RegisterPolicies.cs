@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Ordina.UNite.Security.APS.Policies
+namespace APS.Policies
 {
     public static class DomainPolicies
     {

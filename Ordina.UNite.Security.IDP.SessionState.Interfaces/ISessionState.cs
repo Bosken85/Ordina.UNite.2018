@@ -8,7 +8,7 @@ using Microsoft.ServiceFabric.Actors.Remoting.FabricTransport;
 using Microsoft.ServiceFabric.Services.Remoting;
 
 [assembly: FabricTransportActorRemotingProvider(RemotingListenerVersion = RemotingListenerVersion.V2_1, RemotingClientVersion = RemotingClientVersion.V2_1)]
-namespace Ordina.UNite.Security.IDP.SessionState.Interfaces
+namespace Public.Portal.SessionState.Interfaces
 {
     /// <summary>
     /// This interface defines the methods exposed by an actor.

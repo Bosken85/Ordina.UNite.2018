@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
-namespace Ordina.UNite.Security.Public.Api.Clients
+namespace Public.Api.Clients
 {
     public class ClientFactory : IClientFactory
     {

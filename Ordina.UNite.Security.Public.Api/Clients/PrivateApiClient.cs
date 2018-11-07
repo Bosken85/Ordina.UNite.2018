@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.ServiceFabric.Services.Client;
 using Newtonsoft.Json.Linq;
 
-namespace Ordina.UNite.Security.Public.Api.Clients
+namespace Public.Api.Clients
 {
     public class PrivateApiClient : IPrivateApiClient
     {
@@ -45,7 +45,7 @@ namespace Ordina.UNite.Security.Public.Api.Clients
         private string GetEndpoint()
         {
             ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
-            ResolvedServicePartition partition = resolver.ResolveAsync(new Uri("fabric:/Ordina.UNite.Security/Ordina.UNite.Security.Private.Api"), new ServicePartitionKey(), new CancellationToken()).Result;
+            ResolvedServicePartition partition = resolver.ResolveAsync(new Uri("fabric:/Ordina.UNite.Security/Private.Api"), new ServicePartitionKey(), new CancellationToken()).Result;
 
             ResolvedServiceEndpoint serviceEndpoint= partition.GetEndpoint();
 

@@ -5,17 +5,17 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "Ordina.UNite.Security", "Ordina.UNite.Security\Ordina.UNite.Security.sfproj", "{B0BBE446-CE2A-4FAE-8157-35EB2D45D0C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordina.UNite.Security.Private.Api", "Ordina.UNite.Security.Private.Api\Ordina.UNite.Security.Private.Api.csproj", "{467222C7-6BAB-4200-81F1-72A9C9823B9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Private.Api", "Ordina.UNite.Security.Private.Api\Private.Api.csproj", "{467222C7-6BAB-4200-81F1-72A9C9823B9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordina.UNite.Security.Public.Api", "Ordina.UNite.Security.Public.Api\Ordina.UNite.Security.Public.Api.csproj", "{32EA99ED-D4C9-4D47-A422-FD5CEC07CE03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Public.Api", "Ordina.UNite.Security.Public.Api\Public.Api.csproj", "{32EA99ED-D4C9-4D47-A422-FD5CEC07CE03}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordina.UNite.Security.Public.MVC", "Ordina.UNite.Security.Public.MVC\Ordina.UNite.Security.Public.MVC.csproj", "{444A7327-BEA1-41C0-8F9D-16255492617F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Public.Portal", "Ordina.UNite.Security.Public.MVC\Public.Portal.csproj", "{444A7327-BEA1-41C0-8F9D-16255492617F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordina.UNite.Security.IDP.SessionState", "Ordina.UNite.Security.IDP.SessionState\Ordina.UNite.Security.IDP.SessionState.csproj", "{D956DEC3-49B0-47B7-A0FD-4375541ACBE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Public.Portal.SessionState", "Ordina.UNite.Security.IDP.SessionState\Public.Portal.SessionState.csproj", "{D956DEC3-49B0-47B7-A0FD-4375541ACBE8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordina.UNite.Security.IDP.SessionState.Interfaces", "Ordina.UNite.Security.IDP.SessionState.Interfaces\Ordina.UNite.Security.IDP.SessionState.Interfaces.csproj", "{4CDB1368-DE7B-43E3-9DF4-ED666D6A393B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Public.Portal.SessionState.Interfaces", "Ordina.UNite.Security.IDP.SessionState.Interfaces\Public.Portal.SessionState.Interfaces.csproj", "{4CDB1368-DE7B-43E3-9DF4-ED666D6A393B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordina.UNite.Security.APS", "Ordina.UNite.Security.APS\Ordina.UNite.Security.APS.csproj", "{D40C3B38-6918-4766-82D3-B0AE30710850}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APS", "Ordina.UNite.Security.APS\APS.csproj", "{D40C3B38-6918-4766-82D3-B0AE30710850}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

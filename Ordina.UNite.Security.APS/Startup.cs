@@ -11,9 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Ordina.UNite.Security.APS.Policies;
+using APS.Policies;
 
-namespace Ordina.UNite.Security.APS
+namespace APS
 {
     public class Startup
     {

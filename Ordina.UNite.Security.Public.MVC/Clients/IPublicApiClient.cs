@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Ordina.UNite.Security.Public.MVC.Clients
+namespace Public.Portal.Clients
 {
     public interface IPublicApiClient
     {

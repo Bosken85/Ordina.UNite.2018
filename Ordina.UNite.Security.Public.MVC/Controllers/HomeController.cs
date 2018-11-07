@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Ordina.UNite.Security.Public.MVC.Models;
+using Public.Portal.Models;
 
-namespace Ordina.UNite.Security.Public.MVC.Controllers
+namespace Public.Portal.Controllers
 {
     public class HomeController : Controller
     {

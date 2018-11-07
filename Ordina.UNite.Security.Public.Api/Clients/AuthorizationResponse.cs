@@ -1,4 +1,4 @@
-﻿namespace Ordina.UNite.Security.Public.Api.Clients
+﻿namespace Public.Api.Clients
 {
     public class AuthorizationResponse
     {

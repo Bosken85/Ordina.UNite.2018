@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Ordina.UNite.Security.APS.Policies
+namespace APS.Policies
 {
     public class RequiresLevel : IAuthorizationRequirement
     {
