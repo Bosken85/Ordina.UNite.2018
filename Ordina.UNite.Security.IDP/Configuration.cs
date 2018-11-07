@@ -36,8 +36,8 @@ namespace Ordina.UNite.Security.IDP
                 UserClaims =
                 {
                     // Not all claims needed in private services need to be enabled in the public Api Gateway
-                    //"given_name",
-                    //"family_name",
+                    "given_name",
+                    "family_name",
                     "role"
                 }
             },
@@ -50,7 +50,7 @@ namespace Ordina.UNite.Security.IDP
                     "role",
                     "unit",
                     "function",
-                    "level"
+                    //"level"
                 }
             },
             new ApiResource("aps", "Authorization policy service")
@@ -61,7 +61,7 @@ namespace Ordina.UNite.Security.IDP
                     "family_name",
                     "role",
                     "unit",
-                    "function",
+                    //"function",
                     "level"
                 }
             }

@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Fabric;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.ServiceFabric.Services.Client;
 using Newtonsoft.Json;
-using Public.Portal.Clients;
+using Newtonsoft.Json.Linq;
 
-namespace Public.Portal.Controllers
+namespace Public.Api.Clients
 {
-    [Authorize]
-    public class ValuesController : Controller
+    public class PrivateApiClient : DelegationClient, IPrivateApiClient
     {
-        private readonly IPublicApiClient _publicApiClient;
-
-        public ValuesController(IPublicApiClient publicApiClient)
+        public PrivateApiClient(IHttpContextAccessor httpContextAccessor)
+            : base(httpContextAccessor, "Ordina.UNite.Security", "Private.Api", "public_api.client", "private_api", "secret")
         {
-            _publicApiClient = publicApiClient;
         }
 
-        // GET: Values
-        public async Task<IActionResult> Index()
+        public async Task<IEnumerable<string>> GetValues()
         {
-            var client = await _publicApiClient.GetClient();
+            var client = await ConstructClient();
             var response = await client.GetAsync("values");
 
             var values = new List<string>();
@@ -40,13 +42,12 @@ namespace Public.Portal.Controllers
                 // Do something with it
                 values.AddRange(deserialized);
             }
-            return View(values);
+            return values;
         }
 
-        // GET: Values/Details/5
-        public ActionResult Details(int id)
+        public Task<IEnumerable<string>> GetValue(Guid id)
         {
-            return View();
+            throw new NotImplementedException();
         }
     }
 }

@@ -14,32 +14,11 @@ using Newtonsoft.Json.Linq;
 
 namespace Public.Api.Clients
 {
-    public class ApsClient : IApsClient
+    public class ApsClient : DelegationClient, IApsClient
     {
-        private HttpClient _httpClient = new HttpClient();
-        private string accessToken;
-
-        public HttpClient Client
+        public ApsClient(IHttpContextAccessor httpContextAccessor) 
+            : base(httpContextAccessor, "Ordina.UNite.Security", "APS", "public_api.client", "aps", "secret")
         {
-            get
-            {
-                var endpoint = GetEndpoint();
-                var uriBuilder = new UriBuilder(new Uri(endpoint));
-
-                _httpClient.BaseAddress = uriBuilder.Uri;
-                _httpClient.DefaultRequestHeaders.Clear();
-                _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                if (!string.IsNullOrWhiteSpace(accessToken))
-                    _httpClient.SetBearerToken(accessToken);
-
-                return _httpClient;
-            }
-        }
-
-        public void SetAccessToken(string token)
-        {
-            accessToken = token;
         }
 
         public async Task<AuthorizationResponse> Authorize(AuthorizationRequest authorizationRequests)
@@ -51,7 +30,8 @@ namespace Public.Api.Clients
         public async Task<IEnumerable<AuthorizationResponse>> Authorize(IEnumerable<AuthorizationRequest> authorizationRequests)
         {
             var payload = JsonConvert.SerializeObject(authorizationRequests);
-            var response = await Client.PostAsync("Authorization", new StringContent(payload, Encoding.UTF8, "application/json"));
+            var client = await ConstructClient();
+            var response = await client.PostAsync("Authorization", new StringContent(payload, Encoding.UTF8, "application/json"));
 
             var result = new List<AuthorizationResponse>();
             if (response.IsSuccessStatusCode)
@@ -68,18 +48,6 @@ namespace Public.Api.Clients
                 result.AddRange(deserialized);
             }
             return result;
-        }
-
-        private string GetEndpoint()
-        {
-            ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
-            ResolvedServicePartition partition = resolver.ResolveAsync(new Uri("fabric:/Ordina.UNite.Security/APS"), new ServicePartitionKey(), new CancellationToken()).Result;
-
-            ResolvedServiceEndpoint serviceEndpoint = partition.GetEndpoint();
-
-            JObject addresses = JObject.Parse(serviceEndpoint.Address);
-            string endpoint = (string)addresses["Endpoints"].First();
-            return endpoint;
         }
     }
 }

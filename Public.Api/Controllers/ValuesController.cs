@@ -25,28 +25,13 @@ namespace Public.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var apsClient = await _clientFactory.GetApsClient();
+            var apsClient = await _clientFactory.ApsClient();
             var authorization = await apsClient.Authorize(new AuthorizationRequest { Action = "read", ResourceType = "Values"});
 
             if (!authorization.HasAccess) return Unauthorized();
 
-            var privateApiClient = await _clientFactory.GetPrivateApiClient();
-            var response = await privateApiClient.Client.GetAsync("values");
-
-            var values = new List<string>();
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Request Message Information:- \n\n" + response.RequestMessage + "\n");
-                Console.WriteLine("Response Message Header \n\n" + response.Content.Headers + "\n");
-                // Get the response
-                var customerJsonString = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Your response data is: " + customerJsonString);
-
-                // Deserialise the data (include the Newtonsoft JSON Nuget package if you don't already have it)
-                var deserialized = JsonConvert.DeserializeObject<IEnumerable<string>>(customerJsonString);
-                // Do something with it
-                values.AddRange(deserialized);
-            }
+            var privateClient = await _clientFactory.PrivateApiClient();
+            var values = await privateClient.GetValues();
             return Ok(values);
         }
 
